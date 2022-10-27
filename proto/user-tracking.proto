@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package driver.tracking;
+package user.tracking;
 
-service DriverTrackingService {
+service UserTrackingService {
   rpc CreateActivity (Activity) returns (CreateActivityResponse) {}
 }
 
@@ -15,11 +15,15 @@ message User {
 message Activity {
   string id = 1;
   string action = 2;
-  string date = 3;
-  double latitude = 4;
-  double longitude = 5;
+  string subject = 3;
+  string platform = 4;
+  string date = 5;
   string timestamp = 6;
-  User user = 7;
+  optional string subjectId = 7;
+  optional string description = 8;
+  optional double latitude = 9;
+  optional double longitude = 10;
+  User user = 11;
 }
 
 message CreateActivityResponse {
