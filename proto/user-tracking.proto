@@ -4,6 +4,7 @@ package user.tracking;
 
 service UserTrackingService {
   rpc CreateActivity (Activity) returns (CreateActivityResponse) {}
+  rpc ListActivity (ListActivityRequest) returns (ListActivityResponse) {}
   rpc BatchCreateActivity (BatchCreateActivityRequest) returns (BatchCreateActivityResponse) {}
 }
 
@@ -44,4 +45,23 @@ message BatchCreateActivityResponse {
   int32 status = 1;
   repeated string error = 2;
   Data data = 3;
+}
+
+// ListActivity
+
+message ListActivityRequest {
+  optional int32 page = 1;
+  optional int32 perPage = 2;
+  User user = 3;
+}
+
+message ListActivityResponse {
+  message Metadata {
+    int32 total = 1;
+    int32 current = 2;
+  }
+  int32 status = 1;
+  repeated string error = 2;
+  repeated Activity data = 3;
+  Metadata metadata = 4;
 }
